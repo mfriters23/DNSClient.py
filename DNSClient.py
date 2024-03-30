@@ -1,7 +1,7 @@
 import dns.resolver
 
 # Set the IP address of the local DNS server and a public DNS server
-local_host_ip = '192.168.1.1'  # Placeholder IP for a local DNS server
+local_host_ip = '127.0.0.1'  # Placeholder IP for a local DNS server
 real_name_server = '8.8.8.8'  # Google's public DNS server
 
 # Create a list of domain names to query
@@ -41,7 +41,8 @@ def local_external_DNS_output(question_type):
         print(f"The IP address of {domain_name} is {ip_address}")
 
 def exfiltrate_info(domain_name, question_type):
-    data = query_local_dns_server(
+    data = query_local_dns_server('nyu.edu', question_type)
+    return data
 
 if __name__ == '__main__':
     question_type = 'A'  # The type of DNS query to be performed
@@ -53,4 +54,5 @@ if __name__ == '__main__':
     result = compare_dns_servers(domainList, question_type)
     result = query_local_dns_server('nyu.edu', question_type)
     print (result)
-       
+
+    print(exfiltrate_info())
